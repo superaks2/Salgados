@@ -86,7 +86,7 @@
 						</div>
                     </div>
                 </div>
-            </div>
+       </div>
     </div>
 </section>
 <%@include file="estrutura/footer.jsp"%>

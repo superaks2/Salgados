@@ -3,11 +3,12 @@
 <!DOCTYPE html>
 <html>
 	<head>
-        <title>Projeto  - PWE</title>
+        <title>Rei dos Salgados - Delivery de Salgados</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
         <link rel="stylesheet" href="https://cdn.rawgit.com/michalsnik/aos/2.0.4/dist/aos.css">
+        <link rel="stylesheet" href="./assets/css/bootstrap.css">
 		<link rel="stylesheet" href="./assets/css/geral.css">
 	</head>
     

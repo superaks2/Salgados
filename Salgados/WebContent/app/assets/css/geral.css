@@ -1,4 +1,4 @@
-            header {
+header {
   border-bottom: 1px solid rgba(174, 174, 174, 0.3);
 }
 header .nav-link {
@@ -20,6 +20,20 @@ header .cart:hover svg {
 }
 .sobre-texto {
     line-height: 1.5;
+}
+.carrinho-count {
+	position: absolute;
+    right: 0;
+    top: -10px;
+    background: #f5782d;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 10px;
 }
 .text-secundaria {
     color: #f5772b;
@@ -61,7 +75,10 @@ header .cart:hover svg {
     border-color: #f5772b;
     color: #fff;
 }
-
+.btn-sm {
+	padding: 0.25rem 0.8rem !important;
+    font-size: .875rem !important;
+}
 /* HEADER DARK */
 header.active {
   background: #fff;
@@ -193,6 +210,10 @@ button:not(.normal), .btn:not(.normal) {
 /*PRATOS*/
 .prato-footer-esquerda input {
     width: 45px;
+}
+.input-add .btn.right:hover {
+	background: #f5772b;
+	border-color: #f5772b;
 }
 .prato-footer-esquerda .input-group-prepend button {
     border-top-left-radius: 20px;

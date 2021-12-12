@@ -24,11 +24,9 @@
 <svg class="bi mx-auto ms-2" width="24" height="24"><use xlink:href="#people-circle"></use></svg>
           </a>
           <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
-            <li><a class="dropdown-item" href="#">New project...</a></li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a class="dropdown-item" href="#">Meus Pedidos</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Sign out</a></li>
+            <li><a class="dropdown-item" href="#">Sair</a></li>
           </ul>
         </div>
         <a class="cart ms-2" href="./carrinho.jsp" width="32" height="32">

@@ -11,16 +11,13 @@ public class Produtos{
 	private String Tipo;
 	private int    Id; // chave primária
 	
-	private String tableName = "";
-	private String fieldsName = "";
-	private String keyField = "";
+	private String tableName = "produtos";
+	private String fieldsName = "Nome,Valor,Tipo,Id";
+	private String keyField = "Id";
 	private String where = "";
 	private DBQuery dbQuery = null;
 	
 	public Produtos() {
-		this.tableName = "produtos";
-		this.fieldsName = "Nome,Valor,Tipo,Id";
-		this.keyField = "Id";
 		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
 	}
 	
@@ -91,52 +88,35 @@ public class Produtos{
 		return (saida);
 	}
 
-
-
 	public String getNome() {
 		return Nome;
 	}
-
-
 
 	public void setNome(String nome) {
 		Nome = nome;
 	}
 
-
-
 	public float getValor() {
 		return Valor;
 	}
-
-
 
 	public void setValor(float valor) {
 		Valor = valor;
 	}
 
-
-
 	public String getTipo() {
 		return Tipo;
 	}
-
-
 
 	public void setTipo(String tipo) {
 		Tipo = tipo;
 	}
 
-
-
 	public int getId() {
 		return Id;
 	}
 
-
-
 	public void setId(int id) {
 		Id = id;
 	}
-
 }	

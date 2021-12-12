@@ -13,20 +13,16 @@ public class Carrinhos{
 	private int    Id; // chave primária
 	private String FK_RG;
 	
-	private String tableName = "";
-	private String fieldsName = "";
-	private String keyField = "";
+	private String tableName = "carrinhos";
+	private String fieldsName = "Valor,FK_produtos,FK_Clientes,Metodo_Pagamento,Id,FK_RG";
+	private String keyField = "Id";
 	private String where = "";
 	private DBQuery dbQuery = null;
 	
 	public Carrinhos() {
-		this.tableName = "carrinhos";
-		this.fieldsName = "Valor,FK_produtos,FK_Clientes,Metodo_Pagamento,Id,FK_RG";
-		this.keyField = "Id";
+
 		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
 	}
-	
-	
 	
 	public Carrinhos(float Valor,String FK_Produtos,String FK_Clientes, String Metodo_Pagamento,int Id,String FK_RG) {
 		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
@@ -41,8 +37,6 @@ public class Carrinhos{
 	
 	public Carrinhos(String Valor,String FK_Produtos,String FK_Clientes, String Metodo_Pagamento,String Id,String FK_RG) {
 		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
-		
-		
 		
 		this.setValor(((Valor==null) ? 0 : Float.valueOf(Valor)));
 		this.setFK_Produtos(FK_Produtos);
@@ -110,67 +104,45 @@ public class Carrinhos{
 		return Valor;
 	}
 
-
-
 	public void setValor(Float valor) {
 		Valor = valor;
 	}
-
-
 
 	public String getFK_Produtos() {
 		return FK_Produtos;
 	}
 
-
-
 	public void setFK_Produtos(String fK_Produtos) {
 		FK_Produtos = fK_Produtos;
 	}
-
-
 
 	public String getFK_Clientes() {
 		return FK_Clientes;
 	}
 
-
-
 	public void setFK_Clientes(String fK_Clientes) {
 		FK_Clientes = fK_Clientes;
 	}
-
-
 
 	public String getMetodo_Pagamento() {
 		return Metodo_Pagamento;
 	}
 
-
-
 	public void setMetodo_Pagamento(String metodo_Pagamento) {
 		Metodo_Pagamento = metodo_Pagamento;
 	}
-
-
 
 	public int getId() {
 		return Id;
 	}
 
-
-
 	public void setId(int id) {
 		Id = id;
 	}
 
-
-
 	public String getFK_RG() {
 		return FK_RG;
 	}
-
-
 
 	public void setFK_RG(String fK_RG) {
 		FK_RG = fK_RG;

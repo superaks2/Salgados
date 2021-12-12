@@ -32,7 +32,7 @@
       </div>
       <div class="col-9 cardapio-lista">
         <div class="row cardapio-container">
-          <div class="col-4 mb-4">
+          <div class="col-4 mb-4 salgado">
             <div class="prato bg-white rounded overflow-hidden">
               <figure class="rounded overflow-hidden mb-0">
                 <img src="https://i.imgur.com/7rjovw8.jpg">
@@ -46,19 +46,11 @@
               <hr class="w-80 mx-auto my-0">
               <div class="row prato-footer d-flex p-3">
                   <div class="col-6 prato-footer-esquerda">
-                    <div class="input-group">
-                        <span class="input-group-prepend">
-                            <button type="button" class="btn btn-outline-secondary btn-number normal" disabled="disabled" data-type="minus" data-field="quant[1]">
-                                <span class="fa fa-minus"></span>
-                            </button>
-                        </span>
-                        <input type="text" name="quant[1]" class="form-control input-number normal" value="1" min="1" max="10">
-                        <span class="input-group-append">
-                            <button type="button" class="btn btn-outline-secondary btn-number normal" data-type="plus" data-field="quant[1]">
-                                <span class="fa fa-plus"></span>
-                            </button>
-                        </span>
-                    </div>
+                  	<div class="input-group input-group-sm input-add">
+					  <button class="btn btn-outline-secondary left" type="button"><span class="fa fa-minus"></span></button>
+					  <input type="text" class="form-control normal input-number text-center" value="1" min="1" max="10">
+					    <button class="btn btn-outline-secondary right" type="button"><span class="fa fa-plus"></span></button>
+					</div>
                 </div>
                 <div class="col-6 prato-footer-direita ml-auto">
                   <div class="d-flex justify-content-end">
@@ -68,7 +60,7 @@
               </div>
             </div>
           </div>
-          <div class="col-4 mb-4">
+          <div class="col-4 mb-4 salgado">
             <div class="prato bg-white rounded overflow-hidden">
               <figure class="rounded overflow-hidden mb-0">
                 <img src="https://i.imgur.com/7rjovw8.jpg">
@@ -82,19 +74,11 @@
               <hr class="w-80 mx-auto my-0">
               <div class="row prato-footer d-flex p-3">
                   <div class="col-6 prato-footer-esquerda">
-                    <div class="input-group">
-                        <span class="input-group-prepend">
-                            <button type="button" class="btn btn-outline-secondary btn-number normal" disabled="disabled" data-type="minus" data-field="quant[1]">
-                                <span class="fa fa-minus"></span>
-                            </button>
-                        </span>
-                        <input type="text" name="quant[1]" class="form-control input-number normal" value="1" min="1" max="10">
-                        <span class="input-group-append">
-                            <button type="button" class="btn btn-outline-secondary btn-number normal" data-type="plus" data-field="quant[1]">
-                                <span class="fa fa-plus"></span>
-                            </button>
-                        </span>
-                    </div>
+                  	<div class="input-group input-group-sm input-add">
+					  <button class="btn btn-outline-secondary left" type="button"><span class="fa fa-minus"></span></button>
+					  <input type="text" class="form-control normal input-number text-center" value="1" min="1" max="10">
+					    <button class="btn btn-outline-secondary right" type="button"><span class="fa fa-plus"></span></button>
+					</div>
                 </div>
                 <div class="col-6 prato-footer-direita ml-auto">
                   <div class="d-flex justify-content-end">
@@ -104,7 +88,7 @@
               </div>
             </div>
           </div>
-          <div class="col-4 mb-4">
+          <div class="col-4 mb-4 salgado">
             <div class="prato bg-white rounded overflow-hidden">
               <figure class="rounded overflow-hidden mb-0">
                 <img src="https://i.imgur.com/7rjovw8.jpg">
@@ -118,19 +102,11 @@
               <hr class="w-80 mx-auto my-0">
               <div class="row prato-footer d-flex p-3">
                   <div class="col-6 prato-footer-esquerda">
-                    <div class="input-group">
-                        <span class="input-group-prepend">
-                            <button type="button" class="btn btn-outline-secondary btn-number normal" disabled="disabled" data-type="minus" data-field="quant[1]">
-                                <span class="fa fa-minus"></span>
-                            </button>
-                        </span>
-                        <input type="text" name="quant[1]" class="form-control input-number normal" value="1" min="1" max="10">
-                        <span class="input-group-append">
-                            <button type="button" class="btn btn-outline-secondary btn-number normal" data-type="plus" data-field="quant[1]">
-                                <span class="fa fa-plus"></span>
-                            </button>
-                        </span>
-                    </div>
+                  	<div class="input-group input-group-sm input-add">
+					  <button class="btn btn-outline-secondary left" type="button"><span class="fa fa-minus"></span></button>
+					  <input type="text" class="form-control normal input-number text-center" value="1" min="1" max="10">
+					    <button class="btn btn-outline-secondary right" type="button"><span class="fa fa-plus"></span></button>
+					</div>
                 </div>
                 <div class="col-6 prato-footer-direita ml-auto">
                   <div class="d-flex justify-content-end">
@@ -140,7 +116,7 @@
               </div>
             </div>
           </div>
-          <div class="col-4 mb-4">
+          <div class="col-4 mb-4 salgado">
             <div class="prato bg-white rounded overflow-hidden">
               <figure class="rounded overflow-hidden mb-0">
                 <img src="https://i.imgur.com/7rjovw8.jpg">
@@ -154,19 +130,11 @@
               <hr class="w-80 mx-auto my-0">
               <div class="row prato-footer d-flex p-3">
                   <div class="col-6 prato-footer-esquerda">
-                    <div class="input-group">
-                        <span class="input-group-prepend">
-                            <button type="button" class="btn btn-outline-secondary btn-number normal" disabled="disabled" data-type="minus" data-field="quant[1]">
-                                <span class="fa fa-minus"></span>
-                            </button>
-                        </span>
-                        <input type="text" name="quant[1]" class="form-control input-number normal" value="1" min="1" max="10">
-                        <span class="input-group-append">
-                            <button type="button" class="btn btn-outline-secondary btn-number normal" data-type="plus" data-field="quant[1]">
-                                <span class="fa fa-plus"></span>
-                            </button>
-                        </span>
-                    </div>
+                  	<div class="input-group input-group-sm input-add">
+					  <button class="btn btn-outline-secondary left" type="button"><span class="fa fa-minus"></span></button>
+					  <input type="text" class="form-control normal input-number text-center" value="1" min="1" max="10">
+					    <button class="btn btn-outline-secondary right" type="button"><span class="fa fa-plus"></span></button>
+					</div>
                 </div>
                 <div class="col-6 prato-footer-direita ml-auto">
                   <div class="d-flex justify-content-end">
@@ -176,7 +144,7 @@
               </div>
             </div>
           </div>
-          <div class="col-4 mb-4">
+          <div class="col-4 mb-4 salgado">
             <div class="prato bg-white rounded overflow-hidden">
               <figure class="rounded overflow-hidden mb-0">
                 <img src="https://i.imgur.com/7rjovw8.jpg">
@@ -190,19 +158,11 @@
               <hr class="w-80 mx-auto my-0">
               <div class="row prato-footer d-flex p-3">
                   <div class="col-6 prato-footer-esquerda">
-                    <div class="input-group">
-                        <span class="input-group-prepend">
-                            <button type="button" class="btn btn-outline-secondary btn-number normal" disabled="disabled" data-type="minus" data-field="quant[1]">
-                                <span class="fa fa-minus"></span>
-                            </button>
-                        </span>
-                        <input type="text" name="quant[1]" class="form-control input-number normal" value="1" min="1" max="10">
-                        <span class="input-group-append">
-                            <button type="button" class="btn btn-outline-secondary btn-number normal" data-type="plus" data-field="quant[1]">
-                                <span class="fa fa-plus"></span>
-                            </button>
-                        </span>
-                    </div>
+                  	<div class="input-group input-group-sm input-add">
+					  <button class="btn btn-outline-secondary left" type="button"><span class="fa fa-minus"></span></button>
+					  <input type="text" class="form-control normal input-number text-center" value="1" min="1" max="10">
+					    <button class="btn btn-outline-secondary right" type="button"><span class="fa fa-plus"></span></button>
+					</div>
                 </div>
                 <div class="col-6 prato-footer-direita ml-auto">
                   <div class="d-flex justify-content-end">
@@ -212,7 +172,7 @@
               </div>
             </div>
           </div>
-          <div class="col-4 mb-4">
+          <div class="col-4 mb-4 salgado">
             <div class="prato bg-white rounded overflow-hidden">
               <figure class="rounded overflow-hidden mb-0">
                 <img src="https://i.imgur.com/7rjovw8.jpg">
@@ -226,19 +186,11 @@
               <hr class="w-80 mx-auto my-0">
               <div class="row prato-footer d-flex p-3">
                   <div class="col-6 prato-footer-esquerda">
-                    <div class="input-group">
-                        <span class="input-group-prepend">
-                            <button type="button" class="btn btn-outline-secondary btn-number normal" disabled="disabled" data-type="minus" data-field="quant[1]">
-                                <span class="fa fa-minus"></span>
-                            </button>
-                        </span>
-                        <input type="text" name="quant[1]" class="form-control input-number normal" value="1" min="1" max="10">
-                        <span class="input-group-append">
-                            <button type="button" class="btn btn-outline-secondary btn-number normal" data-type="plus" data-field="quant[1]">
-                                <span class="fa fa-plus"></span>
-                            </button>
-                        </span>
-                    </div>
+                  	<div class="input-group input-group-sm input-add">
+					  <button class="btn btn-outline-secondary left" type="button"><span class="fa fa-minus"></span></button>
+					  <input type="text" class="form-control normal input-number text-center" value="1" min="1" max="10">
+					    <button class="btn btn-outline-secondary right" type="button"><span class="fa fa-plus"></span></button>
+					</div>
                 </div>
                 <div class="col-6 prato-footer-direita ml-auto">
                   <div class="d-flex justify-content-end">

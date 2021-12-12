@@ -6,27 +6,21 @@ import java.sql.SQLException;
 import database.DBQuery;
 
 public class Clientes{
-	private String RG; // chave primária
+	private String RG; // chave primï¿½ria
 	private String Telefone;
 	private String Nome;
 	
-	private String tableName = "";
-	private String fieldsName = "";
-	private String keyField = "";
+	private String tableName = "clientes";
+	private String fieldsName = "RG,Telefone,Nome";
+	private String keyField = "RG";
 	private String where = "";
 	private DBQuery dbQuery = null;
 	
 	public Clientes() {
-		this.tableName = "clientes";
-		this.fieldsName = "RG,Telefone,Nome";
-		this.keyField = "RG";
 		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
 	}
 	
 	public Clientes(String RG,String Telefone,String Nome) {
-		this.tableName = "clientes";
-		this.fieldsName = "RG,Telefone,Nome";
-		this.keyField = "RG";
 		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
 		
 		this.setRG(RG);

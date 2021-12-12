@@ -1,4 +1,4 @@
-            header {
+header {
   border-bottom: 1px solid rgba(174, 174, 174, 0.3);
 }
 header .nav-link {
@@ -61,7 +61,10 @@ header .cart:hover svg {
     border-color: #f5772b;
     color: #fff;
 }
-
+.btn-sm {
+	padding: 0.25rem 0.8rem !important;
+    font-size: .875rem !important;
+}
 /* HEADER DARK */
 header.active {
   background: #fff;
@@ -193,6 +196,10 @@ button:not(.normal), .btn:not(.normal) {
 /*PRATOS*/
 .prato-footer-esquerda input {
     width: 45px;
+}
+.input-add .btn.right:hover {
+	background: #f5772b;
+	border-color: #f5772b;
 }
 .prato-footer-esquerda .input-group-prepend button {
     border-top-left-radius: 20px;

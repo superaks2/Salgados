@@ -30,6 +30,7 @@
           </ul>
         </div>
         <div class="dropdown">
+        	<div class="carrinho-count" style="position: absolute;">3</div>
 	        <a class="cart ms-2" href="#" class="dropdown-toggle" id="dropdownCart" data-bs-toggle="dropdown" width="32" height="32">
 	          <svg class="bi mx-auto mx-lg-2" width="24" height="24"><use xlink:href="#cart"></use></svg>
 	        </a>

@@ -107,7 +107,7 @@
 					  <input type="text" class="form-control normal input-number text-center" value="1" min="1" max="10">
 					    <button class="btn btn-outline-secondary right" type="button"><span class="fa fa-plus"></span></button>
 					</div>
-                </div>
+                  </div>
                 <div class="col-6 prato-footer-direita ml-auto">
                   <div class="d-flex justify-content-end">
                     <button class="btn btn-primary style-1 sem-box btn-sm ml-auto">Adicionar</button>

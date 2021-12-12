@@ -21,6 +21,20 @@ header .cart:hover svg {
 .sobre-texto {
     line-height: 1.5;
 }
+.carrinho-count {
+	position: absolute;
+    right: 0;
+    top: -10px;
+    background: #f5782d;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 10px;
+}
 .text-secundaria {
     color: #f5772b;
 }

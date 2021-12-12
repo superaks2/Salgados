@@ -13,19 +13,15 @@ public class Usuarios{
 	private int    Id; // chave primária
 	private String Fk_rg;
 	
-	private String tableName = "";
-	private String fieldsName = "";
-	private String keyField = "";
+	private String tableName = "usuarios";
+	private String fieldsName = "Nome,Senha,Email,Nivel_acesso,Id,FK_rg";
+	private String keyField = "Id";
 	private String where = "";
 	private DBQuery dbQuery = null;
 	
 	public Usuarios() {
-		this.tableName = "usuarios";
-		this.fieldsName = "Nome,Senha,Email,Nivel_acesso,Id,FK_rg";
-		this.keyField = "Id";
 		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
 	}
-	
 	
 	
 	public Usuarios(String Nome,String Senha,String Email, String Nivel_Acesso,int Id,String Fk_rg) {
@@ -100,14 +96,6 @@ public class Usuarios{
 		saida += "</table>";
 		return (saida);
 	}
-
-	
-	
-	
-	
-	
-	
-	
 	
 	public String getNome() {
 		return Nome;
@@ -157,8 +145,4 @@ public class Usuarios{
 	public void setFk_rg(String fk_rg) {
 		Fk_rg = fk_rg;
 	}
-
-	
-	
-	
 }

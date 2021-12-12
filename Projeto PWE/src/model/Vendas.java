@@ -13,20 +13,15 @@ public class Vendas{
 	private String Fk_Carrinhos;
 	private String Fk_Produtos;
 	
-	private String tableName = "";
-	private String fieldsName = "";
-	private String keyField = "";
+	private String tableName = "vendas";
+	private String fieldsName = "Quantidade,ValorTotal,Data,Id,FK_Carrinhos,FK_Produtos";
+	private String keyField = "Id";
 	private String where = "";
 	private DBQuery dbQuery = null;
 	
 	public Vendas() {
-		this.tableName = "Vendas";
-		this.fieldsName = "Quantidade,ValorTotal,Data,Id,FK_Carrinhos,FK_Produtos";
-		this.keyField = "Id";
 		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
 	}
-	
-	
 	
 	public Vendas(int Quantidade,float ValorTotal,String Data, String FK_Carrinhos,int Id,String FK_Produtos) {
 		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
@@ -100,76 +95,52 @@ public class Vendas{
 		return (saida);
 	}
 
-
-
 	public int getQuantidade() {
 		return Quantidade;
 	}
 
-
-
 	public void setQuantidade(int quantidade) {
-		Quantidade = quantidade;
+		this.Quantidade = quantidade;
 	}
-
-
 
 	public float getValorTotal() {
 		return ValorTotal;
 	}
 
-
-
 	public void setValorTotal(float valorTotal) {
-		ValorTotal = valorTotal;
+		this.ValorTotal = valorTotal;
 	}
-
-
 
 	public String getData() {
 		return Data;
 	}
 
-
-
 	public void setData(String data) {
-		Data = data;
+		this.Data = data;
 	}
-
-
 
 	public int getId() {
 		return Id;
 	}
 
-
-
 	public void setId(int id) {
-		Id = id;
+		this.Id = id;
 	}
-
-
 
 	public String getFk_Carrinhos() {
 		return Fk_Carrinhos;
 	}
 
-
-
 	public void setFk_Carrinhos(String fk_Carrinhos) {
-		Fk_Carrinhos = fk_Carrinhos;
+		this.Fk_Carrinhos = fk_Carrinhos;
 	}
-
-
 
 	public String getFk_Produtos() {
 		return Fk_Produtos;
 	}
 
-
-
 	public void setFk_Produtos(String fk_Produtos) {
-		Fk_Produtos = fk_Produtos;
+		this.Fk_Produtos = fk_Produtos;
 	}
 }
 	

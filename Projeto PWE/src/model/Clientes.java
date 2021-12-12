@@ -23,9 +23,10 @@ public class Clientes{
 		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
 	}
 	
-	
-	
 	public Clientes(String RG,String Telefone,String Nome) {
+		this.tableName = "clientes";
+		this.fieldsName = "RG,Telefone,Nome";
+		this.keyField = "RG";
 		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
 		
 		this.setRG(RG);
@@ -46,7 +47,7 @@ public class Clientes{
 	}
 	
 	public void save() {
-		if((this.getRG() == "")) {
+		if(this.getRG() == "") {
 			this.dbQuery.insert(this.toArray());
 		}else {
 			this.dbQuery.update(this.toArray());
@@ -70,6 +71,7 @@ public class Clientes{
 				saida += "<td>" + rs.getString("RG")+"</td>";
 				saida += "<td>" + rs.getString("Telefone")+"</td>";
 				saida += "<td>" + rs.getString("Nome")+"</td>";
+				saida += "</tr> <br>";
 			};
 		}catch (SQLException e) {
 			e.printStackTrace();
@@ -78,40 +80,27 @@ public class Clientes{
 		return (saida);
 	}
 
-
-
 	public String getRG() {
 		return RG;
 	}
-
-
 
 	public void setRG(String rG) {
 		RG = rG;
 	}
 
-
-
 	public String getTelefone() {
 		return Telefone;
 	}
-
-
 
 	public void setTelefone(String telefone) {
 		Telefone = telefone;
 	}
 
-
-
 	public String getNome() {
 		return Nome;
 	}
 
-
-
 	public void setNome(String nome) {
 		Nome = nome;
 	}
-
 }

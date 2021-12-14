@@ -8,4 +8,7 @@
   	<servlet-name>Usuarios</servlet-name>
   	<servlet-class>servlet.UsuariosCtrl.java</servlet-class>
   </servlet>
+  <session-config>
+  	<session-timeout>3600</session-timeout>
+  </session-config>
 </web-app>

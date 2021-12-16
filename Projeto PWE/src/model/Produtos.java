@@ -6,13 +6,13 @@ import java.sql.SQLException;
 import database.DBQuery;
 
 public class Produtos{
-	private String Nome;
-	private float Valor;
+	private String NomeProduto;
+	private float ValorProduto;
 	private String Tipo;
 	private int    Id; // chave primária
 	
 	private String tableName = "produtos";
-	private String fieldsName = "Nome,Valor,Tipo,Id";
+	private String fieldsName = "NomeProduto,ValorProduto,Tipo,Id";
 	private String keyField = "Id";
 	private String where = "";
 	private DBQuery dbQuery = null;
@@ -23,20 +23,20 @@ public class Produtos{
 	
 	
 	
-	public Produtos(String Nome,Float Valor,String Tipo,int Id) {
+	public Produtos(String NomeProduto,Float ValorProduto,String Tipo,int Id) {
 		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
 		
-		this.setNome(Nome);
-		this.setValor(Valor);
+		this.setNomeProduto(NomeProduto);
+		this.setValorProduto(ValorProduto);
 		this.setTipo(Tipo);
 		this.setId(Id);
 	}
 	
-	public Produtos(String Nome,String Valor,String Tipo,String Id) {
+	public Produtos(String NomeProduto,String ValorProduto,String Tipo,String Id) {
 		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
 		
-		this.setNome(Nome);
-		this.setValor(((Valor==null) ? 0 : Float.valueOf(Valor)));
+		this.setNomeProduto(NomeProduto);
+		this.setValorProduto(((ValorProduto==null) ? 0 : Float.valueOf(ValorProduto)));
 		this.setTipo(Tipo);
 		this.setId(((Id==null) ? 0 : Integer.valueOf(Id)));
 	}
@@ -45,8 +45,8 @@ public class Produtos{
 
 		return (
 			new String[] {
-					""+this.getNome(),
-					""+this.getValor(),
+					""+this.getNomeProduto(),
+					""+this.getValorProduto(),
 					""+this.getTipo(),
 					""+this.getId(),
 			}
@@ -68,15 +68,15 @@ public class Produtos{
 	}
 	
 	public String listAll() {
-		ResultSet rs= this.dbQuery.select("");
+		ResultSet rs= this.dbQuery.select(this.where);
 		String saida = "<br>";
 		saida += "<table border=1>";
 		
 		try{
 			while(rs.next()) {
 				saida += "<tr>";
-				saida += "<td>" + rs.getString("Nome")+"</td>";
-				saida += "<td>" + rs.getString("Valor")+"</td>";
+				saida += "<td>" + rs.getString("NomeProduto")+"</td>";
+				saida += "<td>" + rs.getString("ValorProduto")+"</td>";
 				saida += "<td>" + rs.getString("Tipo")+"</td>";
 				saida += "<td>" + rs.getString("Id")+"</td>";
 				saida += "</tr> <br>";
@@ -88,35 +88,53 @@ public class Produtos{
 		return (saida);
 	}
 
-	public String getNome() {
-		return Nome;
+
+
+	public String getNomeProduto() {
+		return NomeProduto;
 	}
 
-	public void setNome(String nome) {
-		Nome = nome;
+
+
+	public void setNomeProduto(String nomeProduto) {
+		NomeProduto = nomeProduto;
 	}
 
-	public float getValor() {
-		return Valor;
+
+
+	public float getValorProduto() {
+		return ValorProduto;
 	}
 
-	public void setValor(float valor) {
-		Valor = valor;
+
+
+	public void setValorProduto(float valorProduto) {
+		ValorProduto = valorProduto;
 	}
+
+
 
 	public String getTipo() {
 		return Tipo;
 	}
 
+
+
 	public void setTipo(String tipo) {
 		Tipo = tipo;
 	}
+
+
 
 	public int getId() {
 		return Id;
 	}
 
+
+
 	public void setId(int id) {
 		Id = id;
 	}
+
+	
 }	

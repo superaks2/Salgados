@@ -11,10 +11,10 @@ public class Usuarios{
 	private String Email;
 	private String Nivel_Acesso;
 	private int    Id; // chave primária
-	private String Fk_rg;
+	private String FkClientes;
 	
 	private String tableName = "usuarios";
-	private String fieldsName = "Nome,Senha,Email,Nivel_acesso,Id,FK_rg";
+	private String fieldsName = "Nome,Senha,Email,Nivel_acesso,Id,FKClientes";
 	private String keyField = "Id";
 	private String where = "";
 	private DBQuery dbQuery = null;
@@ -24,7 +24,7 @@ public class Usuarios{
 	}
 	
 	
-	public Usuarios(String Nome,String Senha,String Email, String Nivel_Acesso,int Id,String Fk_rg) {
+	public Usuarios(String Nome,String Senha,String Email, String Nivel_Acesso,int Id,String FkClientes) {
 		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
 		
 		this.setNome(Nome);
@@ -32,10 +32,10 @@ public class Usuarios{
 		this.setEmail(Email);
 		this.setNivel_Acesso(Nivel_Acesso);
 		this.setId(Id);
-		this.setFk_rg(Fk_rg);
+		this.setFkClientes(FkClientes);
 	}
 	
-	public Usuarios(String Nome,String Senha,String Email, String Nivel_Acesso,String Id,String Fk_rg) {
+	public Usuarios(String Nome,String Senha,String Email, String Nivel_Acesso,String Id,String FKClientes) {
 		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
 		
 		this.setNome(Nome);
@@ -43,7 +43,7 @@ public class Usuarios{
 		this.setEmail(Email);
 		this.setNivel_Acesso(Nivel_Acesso);
 		this.setId(((Id==null) ? 0 : Integer.valueOf(Id)));
-		this.setFk_rg(Fk_rg);
+		this.setFkClientes(FkClientes);
 	}
 	
 	public String[] toArray() {
@@ -55,7 +55,7 @@ public class Usuarios{
 					""+this.getEmail(),
 					""+this.getNivel_Acesso(),
 					""+this.getId(),
-					""+this.getFk_rg(),
+					""+this.getFkClientes(),
 			}
 		);
 	}
@@ -75,7 +75,7 @@ public class Usuarios{
 	}
 	
 	public String listAll() {
-		ResultSet rs= this.dbQuery.select("");
+		ResultSet rs= this.dbQuery.select(this.where);
 		String saida = "<br>";
 		saida += "<table border=1>";
 		
@@ -87,7 +87,7 @@ public class Usuarios{
 				saida += "<td>" + rs.getString("email")+"</td>";
 				saida += "<td>" + rs.getString("Nivel_Acesso")+"</td>";
 				saida += "<td>" + rs.getString("id")+"</td>";
-				saida += "<td>" + rs.getString("Fk_rg")+"</td>";
+				saida += "<td>" + rs.getString("FkClientes")+"</td>";
 				saida += "</tr> <br>";
 			};
 		}catch (SQLException e) {
@@ -138,11 +138,13 @@ public class Usuarios{
 	}
 
 
-	public String getFk_rg() {
-		return Fk_rg;
+	public String getFkClientes() {
+		return FkClientes;
 	}
 
-	public void setFk_rg(String fk_rg) {
-		Fk_rg = fk_rg;
+
+	public void setFkClientes(String fkClientes) {
+		FkClientes = fkClientes;
 	}
+
 }

@@ -6,15 +6,14 @@ import java.sql.SQLException;
 import database.DBQuery;
 
 public class Vendas{
-	private int Quantidade;
 	private float ValorTotal;
 	private String Data;
 	private int    Id; // chave primária
-	private String Fk_Carrinhos;
-	private String Fk_Produtos;
+	private String FkClientes;
+	private String Metodo_Pagamento;
 	
 	private String tableName = "vendas";
-	private String fieldsName = "Quantidade,ValorTotal,Data,Id,FK_Carrinhos,FK_Produtos";
+	private String fieldsName = "Id, ValorTotal, Metodo_Pagamento, Data, FKClientes";
 	private String keyField = "Id";
 	private String where = "";
 	private DBQuery dbQuery = null;
@@ -23,38 +22,34 @@ public class Vendas{
 		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
 	}
 	
-	public Vendas(int Quantidade,float ValorTotal,String Data, String FK_Carrinhos,int Id,String FK_Produtos) {
+	public Vendas(float ValorTotal, int Id, String FKClientes, String Metodo_Pagamento) {
 		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
 		
-		this.setQuantidade(Quantidade);
 		this.setValorTotal(ValorTotal);
-		this.setData(Data);
-		this.setFk_Carrinhos(FK_Carrinhos);
 		this.setId(Id);
-		this.setFk_Produtos(FK_Produtos);
+		this.setFkClientes(FKClientes);
+		this.setMetodo_Pagamento(Metodo_Pagamento);
 	}
 	
-	public Vendas(String Quantidade,String ValorTotal,String Data, String FK_Carrinhos,String Id,String FK_Produtos) {
+	public Vendas(String ValorTotal, String Id, String FKClientes, String Metodo_Pagamento, String Data) {
 		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
 		
-		this.setQuantidade(((Quantidade==null) ? 0 : Integer.valueOf(Quantidade)));
-		this.setValorTotal(((ValorTotal==null) ? 0 : Float.valueOf(ValorTotal)));
+		this.setValorTotal((ValorTotal==null) ? 0 : Float.valueOf(ValorTotal));
+		this.setId((Id==null) ? 0 : Integer.valueOf(Id));
+		this.setFkClientes(FKClientes);
+		this.setMetodo_Pagamento(Metodo_Pagamento);
 		this.setData(Data);
-		this.setFk_Carrinhos(FK_Carrinhos);
-		this.setId(((Id==null) ? 0 : Integer.valueOf(Id)));
-		this.setFk_Produtos(FK_Produtos);
 	}
 	
 	public String[] toArray() {
 
 		return (
 			new String[] {
-					""+this.getQuantidade(),
 					""+this.getValorTotal(),
-					""+this.getData(),
-					""+this.getFk_Carrinhos(),
 					""+this.getId(),
-					""+this.getFk_Produtos(),
+					""+this.getFkClientes(),
+					""+this.getMetodo_Pagamento(),
+					""+this.getData(),
 			}
 		);
 	}
@@ -74,7 +69,7 @@ public class Vendas{
 	}
 	
 	public String listAll() {
-		ResultSet rs= this.dbQuery.select("");
+		ResultSet rs= this.dbQuery.select(this.where);
 		String saida = "<br>";
 		saida += "<table border=1>";
 		
@@ -87,6 +82,7 @@ public class Vendas{
 				saida += "<td>" + rs.getString("FK_Carrinhos")+"</td>";
 				saida += "<td>" + rs.getString("id")+"</td>";
 				saida += "<td>" + rs.getString("FK_Produtos")+"</td>";
+				saida += "</tr> <br>";
 			};
 		}catch (SQLException e) {
 			e.printStackTrace();
@@ -95,20 +91,12 @@ public class Vendas{
 		return (saida);
 	}
 
-	public int getQuantidade() {
-		return Quantidade;
-	}
-
-	public void setQuantidade(int quantidade) {
-		this.Quantidade = quantidade;
-	}
-
 	public float getValorTotal() {
 		return ValorTotal;
 	}
 
 	public void setValorTotal(float valorTotal) {
-		this.ValorTotal = valorTotal;
+		ValorTotal = valorTotal;
 	}
 
 	public String getData() {
@@ -116,7 +104,7 @@ public class Vendas{
 	}
 
 	public void setData(String data) {
-		this.Data = data;
+		Data = data;
 	}
 
 	public int getId() {
@@ -124,23 +112,24 @@ public class Vendas{
 	}
 
 	public void setId(int id) {
-		this.Id = id;
+		Id = id;
 	}
 
-	public String getFk_Carrinhos() {
-		return Fk_Carrinhos;
+	public String getFkClientes() {
+		return FkClientes;
 	}
 
-	public void setFk_Carrinhos(String fk_Carrinhos) {
-		this.Fk_Carrinhos = fk_Carrinhos;
+	public void setFkClientes(String fkClientes) {
+		FkClientes = fkClientes;
 	}
 
-	public String getFk_Produtos() {
-		return Fk_Produtos;
+	public String getMetodo_Pagamento() {
+		return Metodo_Pagamento;
 	}
 
-	public void setFk_Produtos(String fk_Produtos) {
-		this.Fk_Produtos = fk_Produtos;
+	public void setMetodo_Pagamento(String metodo_Pagamento) {
+		Metodo_Pagamento = metodo_Pagamento;
 	}
+
 }
 	

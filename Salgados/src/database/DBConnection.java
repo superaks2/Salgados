@@ -38,7 +38,6 @@ public class DBConnection {
 		String timezone = "&useTimezone=true&serverTimezone=UTC";// use o &useTimezone=true&serverTimezone=UTC para não ter problemas de data;
 		String url = "jdbc:mysql://"+this.host+":"+port+"/"+this.schema+"?user="+this.user+"&password="+this.password+timezone;
 		try {
-			// Class.forName("com.mysql.jdbc.Driver").newInstance();
 			// A linha acima foi depreciada após o mysql 8.0
 			// A partir do mysql-connector-java-8.0.17.jar utilize as duas linhas abaixo
 			Class.forName("com.mysql.cj.jdbc.Driver").getConstructor().newInstance();
@@ -54,11 +53,13 @@ public class DBConnection {
 			e.printStackTrace();
 		}catch (IllegalArgumentException e) {
 			e.printStackTrace();
+		}catch (SecurityException e) {
+			e.printStackTrace();
 		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
-		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

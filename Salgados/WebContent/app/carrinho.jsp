@@ -7,7 +7,7 @@
 <section class="secao banner" style="background-image: url('https://i.imgur.com/TYz70Uk.jpg'); background-size: cover; background-repeat: no-repeat;">
     <div class="container">
         <div class="col-12">
-            <h2 class="text-white text-center" data-aos="fade-up">Meu Carrinho</h2>
+            <h2 class="text-white text-center" data-aos="fade-up">Meu Carrinho ${teste}</h2>
         </div>
     </div>
 </section>

@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import database.DBQuery;
 
-public class Clientes{
+public class Clientes {
 	private String RG; // chave primária
 	private String Telefone;
 	private String Nome;

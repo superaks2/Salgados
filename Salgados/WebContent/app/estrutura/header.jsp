@@ -31,7 +31,7 @@
         </div>
         <div class="dropdown">
         	<!-- CARRINHO -->
-        	<div class="carrinho-count" style="position: absolute;">3</div>
+        	<div class="carrinho-count" style="position: absolute;">0</div>
 	        <a class="cart ms-2" href="#" class="dropdown-toggle" id="dropdownCart" data-bs-toggle="dropdown" width="32" height="32">
 	          <svg class="bi mx-auto mx-lg-2" width="24" height="24"><use xlink:href="#cart"></use></svg>
 	        </a>
@@ -42,84 +42,6 @@
 	        	</div>
 	        	<hr class="dropdown-divider">
 	        	<div class="carrinho-container overflow-auto" style="max-height: 300px;">
-		        	<div class="carrinho-items p-2 border-bottom">
-		        		<div class="carrinho-top d-flex">
-		        		  <figure class="col-3 rounded overflow-hidden mb-0 d-inline-block">
-			                <img src="https://i.imgur.com/7rjovw8.jpg">
-			              </figure>
-			              <div class="col-9 textos d-flex flex-column ps-2">
-			              	<small class="carrinho-titulo">Coxinha de Catupiry</small>
-			              	<small class="fw-bold">R$ 32,90</small>
-			              </div>
-		        		</div>
-		        		<div class="d-flex carrinho-mid mt-2 align-items-baseline">
-		        	      <div class="col-3">
-		        	      &nbsp;
-		        	      </div>
-		        		  <div class="col-5 prato-footer-esquerda">
-		                  	<div class="input-group input-group-sm input-add" style="max-width: 100px; max-height: 25px;">
-							  <button class="btn btn-outline-secondary left d-flex align-items-center" type="button"><span class="fa fa-minus"></span></button>
-							  <input type="text" class="form-control normal input-number text-center" value="1" min="1" max="10">
-							    <button class="btn btn-outline-secondary right d-flex align-items-center" type="button"><span class="fa fa-plus"></span></button>
-							</div>
-		                  </div>
-		                  <div class="col-3">
-		                  	<small class="ms-2"><a href="#">Remover</a></small>
-		                  </div>
-		        		</div>
-		        	</div>
-		        	<div class="carrinho-items p-2 border-bottom">
-		        		<div class="carrinho-top d-flex">
-		        		  <figure class="col-3 rounded overflow-hidden mb-0 d-inline-block">
-			                <img src="https://i.imgur.com/7rjovw8.jpg">
-			              </figure>
-			              <div class="col-9 textos d-flex flex-column ps-2">
-			              	<small class="carrinho-titulo">Coxinha de Catupiry</small>
-			              	<small class="fw-bold">R$ 32,90</small>
-			              </div>
-		        		</div>
-		        		<div class="d-flex carrinho-mid mt-2 align-items-baseline">
-		        	      <div class="col-3">
-		        	      &nbsp;
-		        	      </div>
-		        		  <div class="col-5 prato-footer-esquerda">
-		                  	<div class="input-group input-group-sm input-add" style="max-width: 100px; max-height: 25px;">
-							  <button class="btn btn-outline-secondary left d-flex align-items-center" type="button"><span class="fa fa-minus"></span></button>
-							  <input type="text" class="form-control normal input-number text-center" value="1" min="1" max="10">
-							    <button class="btn btn-outline-secondary right d-flex align-items-center" type="button"><span class="fa fa-plus"></span></button>
-							</div>
-		                  </div>
-		                  <div class="col-3">
-		                  	<small class="ms-2"><a href="#">Remover</a></small>
-		                  </div>
-		        		</div>
-		        	</div>
-		        	<div class="carrinho-items p-2 border-bottom">
-		        		<div class="carrinho-top d-flex">
-		        		  <figure class="col-3 rounded overflow-hidden mb-0 d-inline-block">
-			                <img src="https://i.imgur.com/7rjovw8.jpg">
-			              </figure>
-			              <div class="col-9 textos d-flex flex-column ps-2">
-			              	<small class="carrinho-titulo">Coxinha de Catupiry</small>
-			              	<small class="fw-bold">R$ 32,90</small>
-			              </div>
-		        		</div>
-		        		<div class="d-flex carrinho-mid mt-2 align-items-baseline">
-		        	      <div class="col-3">
-		        	      &nbsp;
-		        	      </div>
-		        		  <div class="col-5 prato-footer-esquerda">
-		                  	<div class="input-group input-group-sm input-add" style="max-width: 100px; max-height: 25px;">
-							  <button class="btn btn-outline-secondary left d-flex align-items-center" type="button"><span class="fa fa-minus"></span></button>
-							  <input type="text" class="form-control normal input-number text-center" value="1" min="1" max="10">
-							    <button class="btn btn-outline-secondary right d-flex align-items-center" type="button"><span class="fa fa-plus"></span></button>
-							</div>
-		                  </div>
-		                  <div class="col-3">
-		                  	<small class="ms-2"><a href="#">Remover</a></small>
-		                  </div>
-		        		</div>
-		        	</div>
 	        	</div>
 	        	<hr class="dropdown-divider">
 	        	<div class="d-flex justify-content-center p-1 mt-2">

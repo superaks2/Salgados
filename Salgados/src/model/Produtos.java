@@ -2,6 +2,10 @@ package model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import com.mysql.cj.jdbc.result.ResultSetMetaData;
 
 import database.DBQuery;
 
@@ -16,10 +20,11 @@ public class Produtos{
 	private String keyField = "";
 	private String where = "";
 	private DBQuery dbQuery = null;
+	private String arrs[];
 	
 	public Produtos() {
 		this.tableName = "produtos";
-		this.fieldsName = "Nome,Valor,Tipo,Id";
+		this.fieldsName = "Foto,Nome,Valor,Tipo,Id";
 		this.keyField = "Id";
 		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
 	}
@@ -27,17 +32,65 @@ public class Produtos{
 	
 	
 	public Produtos(String Nome,Float Valor,String Tipo,int Id) {
-		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
 		
+		this.tableName = "produtos";
+		this.fieldsName = "Nome,Valor,Tipo,Id";
+		this.keyField = "Id";
+		
+		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
 		this.setNome(Nome);
 		this.setValor(Valor);
 		this.setTipo(Tipo);
 		this.setId(Id);
 	}
 	
-	public Produtos(String Nome,String Valor,String Tipo,String Id) {
+	
+	/*
+	public ArrayList<String> getProdutos(String tipo) {
+		this.tableName = "produtos";
+		this.fieldsName = "Nome,Valor,Tipo,Id";
+		this.keyField = "";
+		
 		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
 		
+		ResultSet res = null;
+		
+		if(tipo != null) {
+			res = this.dbQuery.select("Tipo=\"" + tipo + "\"");
+		} else {
+			res = this.dbQuery.select("");
+		}
+
+		
+		ArrayList<String> arr = new ArrayList<String>();
+		
+		try {
+			String dados = null;
+			
+			while(res.next()) {
+				dados = "{\"nome\": \"" + res.getString("Nome") + "\", \"preco\": " + res.getString("Valor") + "}";
+				arr.add(dados);
+				dados = null;
+				
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
+		return arr;
+		
+		
+	}*/
+	
+	public Produtos(String Nome,String Valor,String Tipo,String Id) {
+		
+		this.tableName = "produtos";
+		this.fieldsName = "Nome,Valor,Tipo,Id";
+		this.keyField = "Id";
+		
+		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
 		this.setNome(Nome);
 		this.setValor(((Valor==null) ? 0 : Float.valueOf(Valor)));
 		this.setTipo(Tipo);
@@ -51,7 +104,7 @@ public class Produtos{
 					""+this.getNome(),
 					""+this.getValor(),
 					""+this.getTipo(),
-					""+this.getId(),
+					""+this.getId()
 			}
 		);
 	}
@@ -89,6 +142,12 @@ public class Produtos{
 		}
 		saida += "</table>";
 		return (saida);
+	}
+	
+	public ResultSet getProdutos(String where) {
+		// ResultSet rs = this.dbQuery.select("Tipo=\"" + tipo + "\"");
+		 ResultSet rs = this.dbQuery.select(where);
+		return rs;
 	}
 
 

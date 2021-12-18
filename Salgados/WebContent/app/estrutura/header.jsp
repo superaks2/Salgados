@@ -44,8 +44,11 @@
 	        	<div class="carrinho-container overflow-auto" style="max-height: 300px;">
 	        	</div>
 	        	<hr class="dropdown-divider">
+	        	<div class="carrinho-detalhe d-flex justify-content-end">
+	        		<small class="me-3"><b>Total: </b> <span class="valor-total-geral">R$ 00,00</span></small>
+	        	</div>
 	        	<div class="d-flex justify-content-center p-1 mt-2">
-	        		<a href="#" class="btn btn-success fw-bold text-uppercase btn-sm">Finalizar Compra</a>
+	        		<a href="<%= request.getContextPath() %>/app/carrinho.jsp" class="btn btn-success fw-bold text-uppercase btn-sm">Finalizar Compra</a>
 	        	</div>
 	        </div>
 	        <!-- END CARRINHO -->

@@ -2,7 +2,7 @@
  * 
  */
 // Deve ficar no topo
-inicializaProductsCartData()
+const initCartData = inicializaProductsCartData()
 
 // HEADER
 let ativado = false
@@ -53,32 +53,48 @@ AOS.init({
 const productsCartData = []
 
 function inicializaProductsCartData() {
+	const state = {
+			observers: []
+	}
 	const jsonCart = getJsonCart()
 	if(jsonCart.length == 0) {
 		initCarrinho([])
-		return
-	}
-		
-	$.ajax({
-		url: '/Salgados/api/carrinho/produtos',
-		data: {
-			produtos: jsonCart
-		}
-	}).done(produtosData => {
-		for(let i = 0; i < produtosData.length; i++) {
-			for(let b = 0; b < jsonCart.length; b++) {
-				if(produtosData[i].id == jsonCart[b].id) {
-					productsCartData.push({...produtosData[i], ...jsonCart[b]})
+		notifyAll([])
+	} else {
+		$.ajax({
+			url: '/Salgados/api/carrinho/produtos',
+			data: {
+				produtos: jsonCart
+			}
+		}).done(produtosData => {
+			for(let i = 0; i < produtosData.length; i++) {
+				for(let b = 0; b < jsonCart.length; b++) {
+					if(produtosData[i].id == jsonCart[b].id) {
+						productsCartData.push({...produtosData[i], ...jsonCart[b]})
+					}
 				}
 			}
+			
+			// Carrega conteúdo html do carrinho
+			notifyAll(productsCartData)
+		})
+	}
+	
+	function subscribe(observerFunction) {
+		state.observers.push(observerFunction)
+	}
+	
+	function notifyAll(productData) {
+		for(let observerFunction of state.observers) {
+			observerFunction(productData)
 		}
-		
-		// Carrega conteúdo html do carrinho
-		initCarrinho(productsCartData)
-	})
+	}
+
+	return {
+		subscribe
+	}
 	
 }
-
 
 // Inicializa o HTML do carrinho
 function initCarrinho(productsData) {
@@ -92,6 +108,7 @@ function initCarrinho(productsData) {
 			const elementCarrinhoProduto = document.createElement('div')
 			elementCarrinhoProduto.innerHTML = createCartProductHTML(productData)
 			carrinhoContainer.appendChild(elementCarrinhoProduto)
+			valorTotalUpdate()
 		})	
 	} else {
 		const elementText = document.createElement('h5')
@@ -101,6 +118,7 @@ function initCarrinho(productsData) {
 	}
 	
 }
+initCartData.subscribe(initCarrinho)
 
 // Ação chamada quando o usuário clica no produto
 function acaoProduto(e, element) {
@@ -141,26 +159,65 @@ function acaoCarrinhoProduto(e, element) {
 		const elementInput = element.querySelector('input.input-number')
 		let quantidade = 0
 				
-		if(e.target == btnMinus || btnMinus.contains(e.target)) {
+		if(e.target == elementInput) {
+			return ;
+		}
+		else if(e.target == btnMinus || btnMinus.contains(e.target)) {
 			elementInput.value = Math.max(Number(elementInput.value - 1), 1)
 		} else if(e.target == btnPlus || btnPlus.contains(e.target)) {
 			let newValue = Number(elementInput.value) + 1
 			elementInput.value = newValue
 		}
+			
 		
 		quantidade = elementInput.value
 		
 		updateProdutoCart({...produtoData, quantidade: quantidade})
 		
+		// Atualiza o carrinho no menu quando atualizado na página de produto
+		if(!element.classList.contains('carrinho-items')) {
+			const valorTotalEl = element.querySelector('.valor-total')
+			const valorTotal = Math.round(quantidade * produtoData.valor * 100)/100
+			
+			valorTotalEl.innerText = `R$ ${valorTotal}`
+			
+			updateCartHTML(produtoData.id, quantidade, produtoData.valor)
+		}
+		
+		
+		
+		
 	} else if(e.target.classList.contains('btn-remove')) {
 		removeCart(produtoData)
 	}
+	
+}
+
+// Atualiza o HTML do carrinho no menu
+// essa ação é usada somente na página carrinho.jsp
+function updateCartHTML(id, quantidade, valor) {
+	const carrinhoContainer = document.querySelector('.carrinho-container')
+	const produtoElemento = carrinhoContainer.querySelector(`[data-produto-id="${id}"]`)
+	const input = produtoElemento.querySelector('input.input-number')
+
+	input.value = quantidade
+	
+}
+
+function updateTableHTML(id, quantidade, valor) {
+	const tabelaCarrinho = document.querySelector('.tabela-carrinho')
+	const produtoElemento = tabelaCarrinho.querySelector(`[data-produto-id="${id}"]`)
+	const input = produtoElemento.querySelector('input.input-number')
+	
+	input.value = quantidade
+	console.log('updateTable')
 }
 
 function removeCart(productData) {
 	const carrinhoContainer = document.querySelector('.carrinho-container')
 	const carrinhoCount = document.querySelector('.carrinho-count')
 	const produtoCarrinhoEl = carrinhoContainer.querySelector(`[data-produto-id="${productData.id}"]`)
+	const carrinhoDetalhe = document.querySelector('.carrinho-detalhe')
 	const jsonCart = getJsonCart()
 	
 	if(produtoCarrinhoEl) {
@@ -179,8 +236,19 @@ function removeCart(productData) {
 			elementText.innerText = "Carrinho Vazio."
 			elementText.classList.add('text-center')
 			carrinhoContainer.appendChild(elementText)
+			valorTotalUpdate()
+			
 		}
 	}
+	
+	// Evento remove carinho
+	const addCartEvent = new CustomEvent('removeCart', {
+		detail: {
+			produto: productData
+		}
+	})
+	
+	document.dispatchEvent(addCartEvent)
 	
 }
 
@@ -195,8 +263,96 @@ function updateProdutoCart(produtoData) {
 	}
 	
 	localStorage.setItem('cart', JSON.stringify(jsonCart))
+	
+	const updateProductEvent = new CustomEvent('updateCart', {detail: {
+		produto: produtoData
+	}})
+	
+	
+	document.dispatchEvent(updateProductEvent)
 }
 
+// Eventos quando o carrinho é atualizado
+['updateCart', 'removeCart', 'addCart'].forEach(event => {
+	document.addEventListener(event, function(e) {
+		cartChanged(event, e.detail.produto)
+	})
+})
+
+function updateProductsCartData(produtoData) {
+	const jsonCart = getJsonCart()
+	let achouProduto = false
+	
+	// Verifica se o produto já está em productsCartData e seta o valor
+	for(let i = 0; i < productsCartData.length; i++) {
+		for(let b = 0; b < jsonCart.length; b++) {
+			if(productsCartData[i].id == jsonCart[b].id) {
+				productsCartData[i].quantidade = jsonCart[b].quantidade
+				achouProduto = true
+				break
+			}
+		}
+	}
+	
+	if(!achouProduto) {
+		for(let i = 0; i < jsonCart.length; i++) {	
+			if(jsonCart[i].id == produtoData.id) {				
+				productsCartData.push({...produtoData, quantidade: jsonCart[i].quantidade})
+			}
+		}
+	}
+	
+	
+	
+	console.log('update!')
+	
+}
+
+function removeProductCartData(produtoData) {
+	for(let i = 0; i < productsCartData.length; i++) {
+		if(productsCartData[i].id == produtoData.id) {
+			productsCartData.splice(i, 1)
+		}
+	}
+	console.log('removeproductData!')
+}
+
+function cartChanged(event, produto) {
+	
+	if(event == 'updateCart' || event == 'addCart') {
+		updateProductsCartData(produto)
+	} else if('removeCart') {
+		removeProductCartData(produto)
+	}
+	
+	// Atualiza o valor total no HTML de .valor-total-geral
+	valorTotalUpdate()
+	
+	// Atualiza o prçeo total do carrinho (droplist)
+	const carrinhoDetalhe = document.querySelector('.carrinho-detalhe')
+	const jsonCart = getJsonCart()
+	// const totalCart = jsonCart.reduce()
+}
+
+function valorTotalUpdate() {
+	console.log('valorTotalUpdate:', productsCartData)
+	const valorTotalGeralEl = document.querySelectorAll('.valor-total-geral')
+	let valorTotal = 1
+	
+	if(productsCartData.length > 0) {		
+		valorTotal = 0
+		for(let i = 0; i < productsCartData.length; i++) {
+			valorTotal += Math.round(Number(productsCartData[i].quantidade) * productsCartData[i].valor * 100) / 100
+		}
+		valorTotal = Math.round(valorTotal * 100)/100
+		console.log(valorTotal)
+		valorTotalGeralEl.forEach(element => element.innerHTML = 'R$ ' + valorTotal)
+		console.log('cartChanged')
+	} else {
+		valorTotalGeralEl.forEach(element => element.innerHTML = 'R$ 00,00')
+	}
+	
+}
 
 // Ação chamada quando o usuário adiciona um produto ao carrinho
 // pela seção, mas não pelo carrinho.
@@ -277,6 +433,30 @@ function eventAddCart(e) {
 	
 	
 }
+
+// Função usada na página do carrinho
+function createHTMLCartPag(produtoData) {
+	return `<tr data-produto='${JSON.stringify(produtoData)}' data-produto-id="${produtoData.id}" onclick="acaoCarrinhoProduto(event, this)">
+		<td>
+		<figure class="rounded overflow-hidden mb-0 me-3" style="max-width: 30px; display: inline-table;">
+            <img src="${produtoData.foto}">
+          </figure>
+		<span class="produto-nome">${produtoData.nome}</span>
+	</td>
+	<td>a calcular</td>
+	<td class="produto-valor">R$ ${produtoData.valor}</td>
+	<td>
+		<div class="input-group input-group-sm input-add w-25">
+		  <button class="btn btn-outline-secondary left minus" type="button"><span class="fa fa-minus"></span></button>
+		  <input type="text" class="form-control normal input-number text-center" value="${produtoData.quantidade}" min="1" max="10">
+	      <button class="btn btn-outline-secondary right plus" type="button"><span class="fa fa-plus"></span></button>
+		</div>
+	</td>
+	<td class="valor-total" data-id="${produtoData.id}">R$ ${Number(produtoData.valor) * produtoData.quantidade}</td>
+	<td><a href="#" class="link-dark btn-remove"><i class="fas fa-times"></i></a></td>
+</tr>`
+}
+
 
 function createCartProductHTML(produtoData) {
 	return `

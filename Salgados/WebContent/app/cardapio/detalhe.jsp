@@ -18,9 +18,8 @@
               </figure>
               <div class="prato-textos p-3 text-dark bg-white">
                 <h5><%= rs.getString("nome") %></h5>
-                <p class="">
                   <!-- coxinha recheada com hambúrguer, maionese e ketchup. -->
-                </p>
+                  <small class="mt-2 text-success"><b>R$ <%= rs.getString("valor") %></b></small>
               </div>
               <hr class="w-80 mx-auto my-0">
               <div class="row prato-footer d-flex p-3">

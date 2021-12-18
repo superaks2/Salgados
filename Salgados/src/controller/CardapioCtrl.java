@@ -38,6 +38,7 @@ public class CardapioCtrl extends HttpServlet {
 		String uri = request.getRequestURI();
 		String action = uri.substring(uri.lastIndexOf("/")+1);
 		
+		
 		switch(action) {
 			/*
 			 * A rota cardapio-detalhe/detalhe deve receber o parametro (tipo)
@@ -48,12 +49,10 @@ public class CardapioCtrl extends HttpServlet {
 				Produtos produtos = new Produtos();
 				String tipo = request.getParameter("tipo");
 				ResultSet rs = null;
-				System.out.println("Chamou aqui!");
 				if(tipo != null) {
 					rs = produtos.getProdutos("Tipo=\"" + tipo + "\"");
 				} else {
 					rs = produtos.getProdutos("");
-					System.out.println("Passando aqui!");
 				}
 				request.setAttribute("produtos", rs);
 				getServletContext().getRequestDispatcher("/app/cardapio/detalhe.jsp").forward(request, response);;
@@ -64,7 +63,6 @@ public class CardapioCtrl extends HttpServlet {
 				RequestDispatcher tagFile = null;
 				ResultSet rs = produtos.getProdutos("");
 				request.setAttribute("produtos", rs);
-				System.out.println("Coletar todos os produtos");
 				tagFile = getServletContext().getRequestDispatcher("/app/cardapio-detalhe.jsp");
 				tagFile.forward(request, response);
 			}

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-
+<jsp:include page="../estrutura/head.jsp">
+	<jsp:param name="css" value="/admin/assets/css/produtos_adicionar.css"/>
+</jsp:include>
 <%@ include file="../estrutura/head.jsp" %>
 
 	<div class="wrapper">
@@ -85,7 +87,6 @@
 		});
 	</script>
 
-	<script type="text/javascript" src="js/add_product.js"></script>
 
 </body>
 </html>

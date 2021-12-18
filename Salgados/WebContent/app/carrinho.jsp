@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!-- ESTRUTURA  -->
 <%@include file="estrutura/head.jsp" %>
 <%@include file="estrutura/header.jsp"%>
@@ -7,7 +9,7 @@
 <section class="secao banner" style="background-image: url('https://i.imgur.com/TYz70Uk.jpg'); background-size: cover; background-repeat: no-repeat;">
     <div class="container">
         <div class="col-12">
-            <h2 class="text-white text-center" data-aos="fade-up">Meu Carrinho ${teste}</h2>
+            <h2 class="text-white text-center" data-aos="fade-up">Meu Carrinho</h2>
         </div>
     </div>
 </section>
@@ -27,64 +29,7 @@
 					<th></th>
 				</tr>
 			</thead>
-			<tbody>
-				<tr>
-					<td>
-						<figure class="rounded overflow-hidden mb-0 me-3" style="max-width: 30px; display: inline-table;">
-			                <img src="https://i.imgur.com/7rjovw8.jpg">
-			              </figure>
-						<span>Pedido loco aqui</span>
-					</td>
-					<td>a calcular</td>
-					<td>R$ 25,50</td>
-					<td>
-						<div class="input-group input-group-sm input-add w-25">
-						  <button class="btn btn-outline-secondary left" type="button"><span class="fa fa-minus"></span></button>
-						  <input type="text" class="form-control normal input-number text-center" value="1" min="1" max="10">
-					      <button class="btn btn-outline-secondary right" type="button"><span class="fa fa-plus"></span></button>
-						</div>
-					</td>
-					<td>R$ 9,99</td>
-					<td><a href="#" class="link-dark"><i class="fas fa-times"></i></a></td>
-				</tr>
-				<tr>
-					<td>
-						<figure class="rounded overflow-hidden mb-0 me-3" style="max-width: 30px; display: inline-table;">
-			                <img src="https://i.imgur.com/7rjovw8.jpg">
-			              </figure>
-						<span>Pedido loco aqui</span>
-					</td>
-					<td>a calcular</td>
-					<td>R$ 25,50</td>
-					<td>
-						<div class="input-group input-group-sm input-add w-25">
-						  <button class="btn btn-outline-secondary left" type="button"><span class="fa fa-minus"></span></button>
-						  <input type="text" class="form-control normal input-number text-center" value="1" min="1" max="10">
-					      <button class="btn btn-outline-secondary right" type="button"><span class="fa fa-plus"></span></button>
-						</div>
-					</td>
-					<td>R$ 9,99</td>
-					<td><a href="#" class="link-dark"><i class="fas fa-times"></i></a></td>
-				</tr>
-				<tr>
-					<td>
-						<figure class="rounded overflow-hidden mb-0 me-3" style="max-width: 30px; display: inline-table;">
-			                <img src="https://i.imgur.com/7rjovw8.jpg">
-			              </figure>
-						<span>Pedido loco aqui</span>
-					</td>
-					<td>a calcular</td>
-					<td>R$ 25,50</td>
-					<td>
-						<div class="input-group input-group-sm input-add w-25">
-						  <button class="btn btn-outline-secondary left" type="button"><span class="fa fa-minus"></span></button>
-						  <input type="text" class="form-control normal input-number text-center" value="1" min="1" max="10">
-					      <button class="btn btn-outline-secondary right" type="button"><span class="fa fa-plus"></span></button>
-						</div>
-					</td>
-					<td>R$ 9,99</td>
-					<td><a href="#" class="link-dark"><i class="fas fa-times"></i></a></td>
-				</tr>
+			<tbody class="tabela-carrinho">
 			</tbody>
 		</table>
 	</div>
@@ -97,13 +42,13 @@
 			<span class="me-4 fs-6">Frete</span> <span class="text-green">Grátis</span>
 		</p>
 		<p class="mb-0">
-			<span class="price fw-bold fs-6 me-4">Total</span> <span>R$ 35,90</span>
+			<span class="price fw-bold fs-6 me-4">Total</span> <span class="valor-total-geral">R$ 35,90</span>
 		</p>
 		</div>
 	</div>
 	
 	<div class="btn-container d-flex">
-		<a class="btn btn-primary style-1 ms-auto" href="./checkout.jsp"><i class="fas fa-shopping-cart"></i> Finalizar Pedido</a>
+		<a class="btn btn-primary style-1 ms-auto" href="<%= request.getContextPath() %>/app/checkout.jsp"><i class="fas fa-shopping-cart"></i> Finalizar Pedido</a>
 	</div>
 
 </div>
@@ -112,3 +57,21 @@
 <!-- ESTRUTURA  -->
 <%@include file="estrutura/footer.jsp" %>
 <!-- END ESTRUTURA -->
+
+
+<!-- SCRIPTS CARRINHO -->
+<script>
+	initCartData.subscribe(updateHTMLCart)
+	
+	// Atualiza o html do carrinho na tabela da página
+	function updateHTMLCart(productData) {
+		const tabelaCarrinho = document.querySelector('.tabela-carrinho')
+		console.log(productData)
+		productData.forEach(produto => {			
+			$(tabelaCarrinho).append(createHTMLCartPag(produto))
+		})
+	}
+	
+
+</script>
+<!-- END SCRIPTS CARRINHO -->

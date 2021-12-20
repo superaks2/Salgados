@@ -16,6 +16,8 @@ https://youtu.be/ijFXNUvr6fE
 
 
 
+
+
 ****
 
 ### Site Loja Restaurante :shopping_cart:
@@ -91,7 +93,7 @@ Na página carrinho, com auxílio de cookie, o cliente adiciona produtos no carr
 
   * Validação do Session na view
 
-    ![](https://i.imgur.com/lvmYyD6.jpg)
+  ![](https://i.imgur.com/lvmYyD6.jpg)
 
 
 

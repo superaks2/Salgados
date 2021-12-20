@@ -1,6 +1,6 @@
 package mail;
 
-
+import javax.activation.*;
 import java.util.Properties;
 
 import javax.mail.Message;

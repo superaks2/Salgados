@@ -73,5 +73,20 @@
 	}
 	
 
+	// Ação para remover o produto da tabela
+	document.addEventListener('removeCart', removerProdutoTabela)
+	function removerProdutoTabela(e) {
+		console.log('chamou ação pra remover da tabela')
+		const produtoData = e.detail.produto
+		
+		console.log(produtoData)
+		console.log('id: ' + produtoData.id)
+		console.log('tr[data-produto-id="' + produtoData.id + '"]')
+		
+		const trProduto = document.querySelector('tr[data-produto-id="' + produtoData.id + '"]')
+		console.log('trproduto ' + trProduto)
+		trProduto.remove()
+	}
 </script>
+
 <!-- END SCRIPTS CARRINHO -->

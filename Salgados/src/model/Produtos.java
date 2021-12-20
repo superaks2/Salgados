@@ -14,7 +14,10 @@ public class Produtos{
 	private float Valor;
 	private String Tipo;
 	private int    Id; // chave primária
-	
+	private String Foto;
+
+
+
 	private String tableName = "";
 	private String fieldsName = "";
 	private String keyField = "";
@@ -37,13 +40,29 @@ public class Produtos{
 		this.fieldsName = "Nome,Valor,Tipo,Id";
 		this.keyField = "Id";
 		
-		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
 		this.setNome(Nome);
 		this.setValor(Valor);
 		this.setTipo(Tipo);
 		this.setId(Id);
+		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
 	}
 	
+	public void update() {
+		this.dbQuery.update(this.toArrayComplete());
+	}
+	
+	public Produtos(String Foto, String Nome,String Valor,String Tipo,int Id) {
+		this.tableName = "produtos";
+		this.fieldsName = "Foto,Nome,Valor,Tipo,Id";
+		this.keyField = "Id";
+		
+		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
+		this.setNome(Nome);
+		this.setValor(((Valor==null) ? 0 : Float.parseFloat(Valor)));
+		this.setTipo(Tipo);
+		this.setId(Id);
+		this.setFoto(Foto);
+	}
 	
 	/*
 	public ArrayList<String> getProdutos(String tipo) {
@@ -84,6 +103,21 @@ public class Produtos{
 		
 	}*/
 	
+	public Produtos(String Foto,String Nome,String Valor,String Tipo,String Id) {
+		
+		this.tableName = "produtos";
+		this.fieldsName = "Foto,Nome,Valor,Tipo,Id";
+		this.keyField = "Id";
+		
+		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
+		this.setNome(Nome);
+		this.setValor(((Valor==null) ? 0 : Float.valueOf(Valor)));
+		this.setTipo(Tipo);
+		this.setId(((Id==null) ? 0 : Integer.valueOf(Id)));
+		this.setFoto(Foto);
+	}
+	
+	
 	public Produtos(String Nome,String Valor,String Tipo,String Id) {
 		
 		this.tableName = "produtos";
@@ -96,6 +130,20 @@ public class Produtos{
 		this.setTipo(Tipo);
 		this.setId(((Id==null) ? 0 : Integer.valueOf(Id)));
 	}
+	
+	public String[] toArrayComplete() {
+
+		return (
+			new String[] {
+					""+this.getFoto(),
+					""+this.getNome(),
+					""+this.getValor(),
+					""+this.getTipo(),
+					""+this.getId()
+			}
+		);
+	}
+	
 	
 	public String[] toArray() {
 
@@ -111,36 +159,40 @@ public class Produtos{
 	
 	public void save() {
 		if((this.getId() == 0)) {
-			this.dbQuery.insert(this.toArray());
+			this.dbQuery.insert(this.toArrayComplete());
 		}else {
-			this.dbQuery.update(this.toArray());
+			this.dbQuery.update(this.toArrayComplete());
 		}
 	}
 	
-	public void delete() {
-		if(this.getId() > 0) {
-			this.dbQuery.delete(this.toArray());
-		}
+	public void delete(String where) {
+		System.out.println("Model.produtos where: " + where);
+		this.dbQuery.delete("Id=" + where);
 	}
+	
+	public ResultSet getProduto(String id) {
+		ResultSet rs= this.dbQuery.select("Id=" + id);
+		return rs;
+	}
+	
 	
 	public String listAll() {
 		ResultSet rs= this.dbQuery.select("");
 		String saida = "<br>";
-		saida += "<table border=1>";
 		
 		try{
 			while(rs.next()) {
 				saida += "<tr>";
+				saida += "<td><img style=\"max-width: 40px;\" src=\"" + rs.getString("Foto") + "\"></td>";
 				saida += "<td>" + rs.getString("Nome")+"</td>";
 				saida += "<td>" + rs.getString("Valor")+"</td>";
 				saida += "<td>" + rs.getString("Tipo")+"</td>";
-				saida += "<td>" + rs.getString("Id")+"</td>";
-				saida += "</tr> <br>";
+				saida += "<td><form action=\"editar\"><input style=\"width: 80px;\" class=\"btn btn-primary\" type=\"submit\" value=\"editar\"><input type=\"hidden\" name=\"id\" value=\"" + rs.getString("Id") + "\"></form> <form action=\"deletar\"><input type=\"hidden\" name=\"id\" value=\"" + rs.getString("Id") + "\"><input style=\"width: 80px;\" class=\"btn btn-danger\" type=\"submit\" name=\"acao\" value=\"deletar\"></form></td>";
+				saida += "</tr>";
 			};
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
-		saida += "</table>";
 		return (saida);
 	}
 	
@@ -162,6 +214,15 @@ public class Produtos{
 		Nome = nome;
 	}
 
+	public String getFoto() {
+		return Foto;
+	}
+
+
+
+	public void setFoto(String foto) {
+		Foto = foto;
+	}
 
 
 	public float getValor() {

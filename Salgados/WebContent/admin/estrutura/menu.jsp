@@ -21,9 +21,6 @@
 	                    <li><a href="<%= request.getContextPath() %>/admin/usuarios/gerenciar.jsp">Gerenciar</a></li>
 	                </ul>
 
-	                <li data-toggle="collapse" data-target="#groups" class="collapsed">
-	                	<a href="#"><i class="fa fa-users fa-lg"></i> Grupos <i class="fas fa-caret-down"></i></a>
-	                </li>  
 	                <ul class="sub-menu collapse" id="groups">
 	                	<li><a href="group.php">Gerenciar Grupos</a></li>
 	                </ul>
@@ -37,21 +34,8 @@
 	                  <li><a href="<%= request.getContextPath() %>/admin/produtos/gerenciar.jsp">Gerenciar</a></li>
 	                </ul>
 
-	                <li data-toggle="collapse" data-target="#order" class="collapsed">
-	                	<a href="#"><i class="fas fa-book-open"></i> Pedidos <i class="fas fa-caret-down"></i></a>
-	                </li>
-	                <ul class="sub-menu collapse" id="order">
-	                  <li><a href="<%= request.getContextPath() %>/admin/pedidos/gerenciar.jsp">Gerenciar</a></li>
-	                </ul>
-
 	                <li>
-	                	<a href="settings.php">
-	                		<i class="fa fa-sun fa-lg"></i> Configurações
-	                  	</a>
-	                </li>
-
-	                <li>
-	                  	<a href="<%= request.getContextPath() %>/admin/logout.jsp">
+	                  	<a href="<%= request.getContextPath() %>/admin/logout">
 	                  		<i class="fa fa-user-times fa-lg"></i> Sair
 	               		</a>
 	                </li>

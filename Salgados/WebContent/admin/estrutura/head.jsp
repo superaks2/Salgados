@@ -1,3 +1,12 @@
+<%
+if(session.getAttribute("usuario") == null) {
+
+%>
+<script>
+	window.location.href = "<%=request.getContextPath() %>/admin/login.jsp"
+</script>
+
+<% } %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -16,3 +25,4 @@
 	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>${param.css}">
 </head>
 <body> 
+

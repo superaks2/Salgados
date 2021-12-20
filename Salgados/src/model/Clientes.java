@@ -6,10 +6,14 @@ import java.sql.SQLException;
 import database.DBQuery;
 
 public class Clientes {
-	private String RG; // chave primária
+	private String CPF; // chave primária
 	private String Telefone;
 	private String Nome;
+	private String CEP;
+	private String Endereco;
 	
+
+
 	private String tableName = "";
 	private String fieldsName = "";
 	private String keyField = "";
@@ -18,19 +22,25 @@ public class Clientes {
 	
 	public Clientes() {
 		this.tableName = "clientes";
-		this.fieldsName = "RG,Telefone,Nome";
-		this.keyField = "RG";
+		this.fieldsName = "CPF,Telefone,Nome,CEP,Endereco";
+		this.keyField = "CPF";
 		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
 	}
 	
 	
 	
-	public Clientes(String RG,String Telefone,String Nome) {
-		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
+	public Clientes(String cpf,String Telefone,String Nome, String Cep, String Endereco) {
+		this.tableName = "clientes";
+		this.fieldsName = "CPF,Telefone,Nome,CEP,Endereco";
+		this.keyField = "CPF";
 		
-		this.setRG(RG);
+		this.setCPF(cpf);
 		this.setTelefone(Telefone);
 		this.setNome(Nome);
+		this.setCEP(Cep);
+		this.setEndereco(Endereco);
+		
+		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
 	}
 	
 	
@@ -38,24 +48,33 @@ public class Clientes {
 
 		return (
 			new String[] {
-					""+this.getRG(),
+					""+this.getCPF(),
 					""+this.getTelefone(),
-					""+this.getNome()
+					""+this.getNome(),
+					""+this.getCEP(),
+					""+this.getEndereco()
 			}
 		);
 	}
 	
 	public void save() {
-		if((this.getRG() == "")) {
-			this.dbQuery.insert(this.toArray());
-		}else {
-			this.dbQuery.update(this.toArray());
+		ResultSet rs = this.dbQuery.select("CPF=\"" + this.getCPF() + "\"");
+		try {
+			if (!rs.isBeforeFirst() ) {    
+				this.dbQuery.insert(this.toArray());
+			}  else {
+				this.dbQuery.update(this.toArray());
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
+
 	
 	public void delete() {
-		if(this.getRG() != "") {
-			this.dbQuery.delete(this.toArray());
+		if(this.getCPF() != "") {
+			this.dbQuery.deleteValues(this.toArray());
 		}
 	}
 	
@@ -67,7 +86,7 @@ public class Clientes {
 		try{
 			while(rs.next()) {
 				saida += "<tr>";
-				saida += "<td>" + rs.getString("RG")+"</td>";
+				saida += "<td>" + rs.getString("CPF")+"</td>";
 				saida += "<td>" + rs.getString("Telefone")+"</td>";
 				saida += "<td>" + rs.getString("Nome")+"</td>";
 			};
@@ -80,14 +99,14 @@ public class Clientes {
 
 
 
-	public String getRG() {
-		return RG;
+	public String getCPF() {
+		return CPF;
 	}
 
 
 
-	public void setRG(String rG) {
-		RG = rG;
+	public void setCPF(String cpf) {
+		CPF = cpf;
 	}
 
 
@@ -95,6 +114,29 @@ public class Clientes {
 	public String getTelefone() {
 		return Telefone;
 	}
+	
+	public String getCEP() {
+		return CEP;
+	}
+
+
+
+	public void setCEP(String cEP) {
+		CEP = cEP;
+	}
+
+
+
+	public String getEndereco() {
+		return Endereco;
+	}
+
+
+
+	public void setEndereco(String endereco) {
+		Endereco = endereco;
+	}
+
 
 
 

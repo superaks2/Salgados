@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-
+<%@page import="model.Produtos" %>
 <jsp:include page="../estrutura/head.jsp">
 	<jsp:param name="css" value="/admin/assets/css/produtos_gerenciar.css"/>
 </jsp:include>
-
 	<div class="wrapper">
 
 		<!-- Sidebar -->
@@ -38,10 +37,7 @@
 
 									<div class="col-md-4 mt-2 mb-4 ml-auto">
 										<div class="input-group">
-						                	<input type="text" name="search" id="search" onkeyup="SearchField();" class="form-control shadow-none" placeholder="Producrar Produtos">
-						                	<span class="input-group-btn">
-						                		<button class="btn btn-primary shadow-none" id="search-button">Procurar</button>
-						                 	</span>
+					
 						               	</div>
 									</div>
 
@@ -58,12 +54,12 @@
 									      		<th scope="col">Nome Produto</th>
 									      		<th scope="col">Preço</th>
 									      		<th scope="col">Categoria</th>
-									      		<th scope="col">Ativo</th>
 									      		<th scope="col">Ação</th>
 									    	</tr>
 									  	</thead>
 									  	<tbody id="display">
- 								
+ 											<% 	String saida = new Produtos().listAll();%>
+ 											<%= saida %>
 									  	</tbody>
 									</table>
 
@@ -76,12 +72,6 @@
 									<nav aria-label="Page navigation example" style="background-color: transparent;">
 		                              <ul class="pagination justify-content-end">
 
-		                                     
-		                                  <li class="page-item"><a href="<?php  echo 'manage_product.php?page=' . $page_previous ?>" class="page-link">Previous</a></li>               
-		                                  
-		                                      
-		                                  <li class="page-item "><a href="<?php  echo 'manage_product.php?page=' . $page_next ?>" class="page-link">Next</a></li>
-   
 		                                      
 		                              </ul>
 		                          	</nav>

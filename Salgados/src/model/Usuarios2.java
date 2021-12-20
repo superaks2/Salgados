@@ -11,6 +11,7 @@ public class Usuarios{
 	private String Email;
 	private String Nivel_Acesso;
 	private int    Id; // chave primária
+	private String Fk_rg;
 	
 	private String tableName = "";
 	private String fieldsName = "";
@@ -20,113 +21,89 @@ public class Usuarios{
 	
 	public Usuarios() {
 		this.tableName = "usuarios";
-		this.fieldsName = "Nome,Senha,Email,Nivel_Acesso,Id";
+		this.fieldsName = "Nome,Senha,Email,Nivel_acesso,Id,FK_rg";
 		this.keyField = "Id";
 		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
 	}
 	
-
-	public ResultSet query(String where) {
-		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
-		ResultSet rs= this.dbQuery.select(where);
-		return rs;
-	}
-	public ResultSet getUsuario(String id) {
-		ResultSet rs= this.dbQuery.select("Id=" + id);
-		return rs;
-	}
 	
-
-	public Usuarios(String Nome,String Senha,String Email,String Nivel_Acesso,int Id) {
-		this.tableName = "usuarios";
-		this.fieldsName = "Nome,Senha,Email,Nivel_Acesso,Id";
-		this.keyField = "Id";
+	
+	public Usuarios(String Nome,String Senha,String Email, String Nivel_Acesso,int Id,String Fk_rg) {
 		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
 		
 		this.setNome(Nome);
-		this.setSenha("md5(" + Senha + ")");
+		this.setSenha(Senha);
 		this.setEmail(Email);
 		this.setNivel_Acesso(Nivel_Acesso);
 		this.setId(Id);
+		this.setFk_rg(Fk_rg);
 	}
 	
-	
-	
-	public Usuarios(String Nome,String Senha,String Email,String Nivel_Acesso,String Id) {
-		this.tableName = "usuarios";
-		this.fieldsName = "Nome,Senha,Email,Nivel_Acesso,Id";
-		this.keyField = "Id";
-		
+	public Usuarios(String Nome,String Senha,String Email, String Nivel_Acesso,String Id,String Fk_rg) {
 		this.dbQuery = new DBQuery(this.tableName, this.fieldsName, this.keyField);
 		
 		this.setNome(Nome);
-		this.setSenha("md5(" + Senha + ")");
+		this.setSenha(Senha);
 		this.setEmail(Email);
 		this.setNivel_Acesso(Nivel_Acesso);
 		this.setId(((Id==null) ? 0 : Integer.valueOf(Id)));
+		this.setFk_rg(Fk_rg);
 	}
 	
-	
 	public String[] toArray() {
-			return (
-				new String[] {
+
+		return (
+			new String[] {
 					""+this.getNome(),
 					""+this.getSenha(),
 					""+this.getEmail(),
 					""+this.getNivel_Acesso(),
 					""+this.getId(),
-					}
-				);
+					""+this.getFk_rg(),
+			}
+		);
 	}
 	
 	public void save() {
 		if((this.getId() == 0)) {
 			this.dbQuery.insert(this.toArray());
-		} else {
+		}else {
 			this.dbQuery.update(this.toArray());
 		}
 	}
 	
-	public int insertSql(String sql) {
-		return this.dbQuery.execute(sql);
+	public void delete() {
+		if(this.getId() > 0) {
+			this.dbQuery.delete(this.toArray());
+		}
 	}
-	
-	public void update() {
-		this.dbQuery.update(this.toArray());
-	}
-	
-	public void delete(String where) {
-		System.out.println("Model delete");
-		this.dbQuery.delete("Id=" + where);
-	}
-	
 	
 	public String listAll() {
 		ResultSet rs= this.dbQuery.select("");
 		String saida = "<br>";
+		saida += "<table border=1>";
 		
 		try{
 			while(rs.next()) {
 				saida += "<tr>";
-				saida += "<td>" + rs.getString("Id")+"</td>";
-				saida += "<td>" + rs.getString("Nome")+"</td>";
-				saida += "<td>" + rs.getString("Email")+"</td>";
+				saida += "<td>" + rs.getString("nome")+"</td>";
+				saida += "<td>" + rs.getString("senha")+"</td>";
+				saida += "<td>" + rs.getString("email")+"</td>";
 				saida += "<td>" + rs.getString("Nivel_Acesso")+"</td>";
-				saida += "<td><form action=\"editar\"><input class=\"btn btn-primary\" style=\"width: 80px;\" type=\"submit\" value=\"editar\"><input type=\"hidden\" name=\"id\" value=\"" + rs.getString("Id") + "\"></form> <form action=\"deletar\"><input type=\"hidden\" name=\"id\" value=\"" + rs.getString("Id") + "\"><input style=\"width: 80px;\" class=\"btn btn-danger\" type=\"submit\" name=\"acao\" value=\"deletar\"></form></td>";
-				saida += "</tr>";
+				saida += "<td>" + rs.getString("id")+"</td>";
+				saida += "<td>" + rs.getString("Fk_rg")+"</td>";
+				saida += "</tr> <br>";
 			};
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
+		saida += "</table>";
 		return (saida);
 	}
 
 	
 	
-	public ResultSet getUsuarios(String where) {
-		 ResultSet rs = this.dbQuery.select(where);
-		return rs;
-	}
+	
 	
 	
 	
@@ -160,8 +137,8 @@ public class Usuarios{
 		return Nivel_Acesso;
 	}
 
-	public void setNivel_Acesso(String Nivel_Acesso) {
-		this.Nivel_Acesso = Nivel_Acesso;
+	public void setNivel_Acesso(String nivel_Acesso) {
+		Nivel_Acesso = nivel_Acesso;
 	}
 
 	public int getId() {
@@ -171,6 +148,17 @@ public class Usuarios{
 	public void setId(int id) {
 		Id = id;
 	}
+
+
+	public String getFk_rg() {
+		return Fk_rg;
+	}
+
+	public void setFk_rg(String fk_rg) {
+		Fk_rg = fk_rg;
+	}
+
+	
 	
 	
 }

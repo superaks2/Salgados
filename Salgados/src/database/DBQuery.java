@@ -94,6 +94,7 @@ public class DBQuery {
 		if ( values.length == this.fieldsName.length){
 			String sql = "INSERT INTO "+this.tableName+" ( "+  this.joinElements(this.fieldsName, ", ");
 			sql += ") VALUES ('"+joinElements(values, "','")+"')";
+			System.out.println("=======DBQuery===========");
 			System.out.print(sql);
 			return ( this.execute(sql));
 		}else{
@@ -102,7 +103,7 @@ public class DBQuery {
 		return 0;
 	}
 	
-	public int delete(String[] values) {
+	public int deleteValues(String[] values) {
 		if (values.length != this.fieldsName.length){
 			System.out.println("\n A quantidade de campos ï¿½ diferente da quantidade de valores!");
 			return ( 0 );
@@ -113,6 +114,18 @@ public class DBQuery {
 			return(0);
 		}
 		sql += "\n WHERE "+ this.fieldKey +" = '"+ values[this.keyFieldIndex] +"'";
+		System.out.print( sql );
+		return ( this.execute(sql) );
+	}
+	
+	public int delete(String where) {
+		System.out.println("DBQuery delete");
+		if(where == "") {
+			System.out.println("É importante inserir o where!");
+			return (0);
+		}
+		String sql = "\nDELETE FROM "+this.tableName+" ";
+		sql += "WHERE " + where;
 		System.out.print( sql );
 		return ( this.execute(sql) );
 	}

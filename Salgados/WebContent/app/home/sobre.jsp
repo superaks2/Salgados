@@ -11,7 +11,7 @@
               Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
             <div class="btn-container">
-              <a href="#" class="btn btn-primary style-1">Saiba Mais</a>
+              <a href="<%= request.getContextPath() %>/app/sobre.jsp" class="btn btn-primary style-1">Saiba Mais</a>
             </div>
          </div>
          <div class="col-6 sobre-imagem" data-aos="fade-left">

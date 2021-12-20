@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
     <div class="container">
 
       <footer class="pt-4 my-md-5 pt-md-5">
@@ -5,20 +7,20 @@
           <div class="col-3 col-md">
             <h5 class="text-white">Institucional</h5>
             <ul class="list-unstyled text-small">
-              <li><a class="text-decoration-none text-white" href="#">Home</a></li>
-              <li><a class="text-decoration-none text-white" href="#">O Restaurante</a></li>
-              <li><a class="text-decoration-none text-white" href="#">Cardápio</a></li>
-              <li><a class="text-decoration-none text-white" href="#">Contato</a></li>
-              <li><a class="text-decoration-none text-white" href="#">Política de Privacidade</a></li>
+              <li><a class="text-decoration-none text-white" href="<%= request.getContextPath() %>/app/index.jsp">Home</a></li>
+              <li><a class="text-decoration-none text-white" href="<%= request.getContextPath() %>/app/sobre.jsp">O Restaurante</a></li>
+              <li><a class="text-decoration-none text-white" href="<%= request.getContextPath() %>/app/cardapio.jsp">Cardápio</a></li>
+              <li><a class="text-decoration-none text-white" href="<%= request.getContextPath() %>/app/contato.jsp">Contato</a></li>
+              <li><a class="text-decoration-none text-white" href="<%= request.getContextPath() %>/app/politica-privacidade.jsp">Política de Privacidade</a></li>
             </ul>
           </div>
           <div class="col-3 col-md">
             <h5 class="text-white">Cardápio</h5>
             <ul class="list-unstyled text-small">
-               <li><a class="text-decoration-none text-white" href="#">Salgados</a></li>
-               <li><a class="text-decoration-none text-white" href="#">Prato</a></li>
-               <li><a class="text-decoration-none text-white" href="#">Bebidas</a></li>
-               <li><a class="text-decoration-none text-white" href="#">Doces</a></li>
+               <li><a class="text-decoration-none text-white" href="<%= request.getContextPath() %>/app/cardapio-detalhe.jsp?tipo=Salgados">Salgados</a></li>
+               <li><a class="text-decoration-none text-white" href="<%= request.getContextPath() %>/app/cardapio-detalhe.jsp?tipo=Prato">Prato</a></li>
+               <li><a class="text-decoration-none text-white" href="<%= request.getContextPath() %>/app/cardapio-detalhe.jsp?tipo=Bebidas">Bebidas</a></li>
+               <li><a class="text-decoration-none text-white" href="<%= request.getContextPath() %>/app/cardapio-detalhe.jsp?tipo=Doces">Doces</a></li>
             </ul>
           </div>
           <div class="col-3 col-md">
@@ -58,6 +60,9 @@
         <span class="text-white text-center">Nome Site © - 2021 - Todos os direitos reservados</span>
       </div>
 
+	<!-- COOKIE -->
+	<%@include file="../popup/popups.jsp"%>
+	<!-- END COOKIE -->
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

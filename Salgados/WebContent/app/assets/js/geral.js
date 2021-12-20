@@ -151,6 +151,7 @@ function acaoProduto(e, element) {
 function acaoCarrinhoProduto(e, element) {
 	const inputAdd = element.querySelector('.input-add')
 	const produtoData = JSON.parse(element.dataset['produto'])
+	const btnRemove = element.querySelector('.btn-remove')
 	
 	// Ação adicionar ao carrinho
 	if(inputAdd.contains(e.target)) { // Ação incrementar ou decrementar
@@ -187,7 +188,7 @@ function acaoCarrinhoProduto(e, element) {
 		
 		
 		
-	} else if(e.target.classList.contains('btn-remove')) {
+	} else if(e.target.classList.contains('btn-remove') || btnRemove.contains(e.target)) {
 		removeCart(produtoData)
 	}
 	
@@ -434,6 +435,35 @@ function eventAddCart(e) {
 	
 }
 
+//Função pedido finalizado
+function createHTMLPedidoFinalizado(produtoData) {
+	return `<tr data-produto='${JSON.stringify(produtoData)}' data-produto-id="${produtoData.id}">
+		<td>
+		<figure class="rounded overflow-hidden mb-0 me-3" style="max-width: 30px; display: inline-table;">
+            <img src="${produtoData.foto}">
+          </figure>
+		<span class="produto-nome">${produtoData.quantidade}x ${produtoData.nome}</span>
+	</td>
+	<td class="produto-valor">R$ ${produtoData.valor}</td>
+	<td class="valor-total" data-id="${produtoData.id}">R$ ${Number(produtoData.valor) * produtoData.quantidade}</td>
+</tr>`
+}
+
+// Função usada na página do checkout
+function createHTMLCheckoutPag(produtoData) {
+	return `
+		<li class="pb-2 border-bottom mb-2">
+			<div class="d-flex justify-content-between">
+				<figure class="rounded overflow-hidden mb-0 me-3" style="max-width: 30px; display: inline-table;">
+				  <img src="${produtoData.foto}">
+				</figure>
+				<span class="me-auto">${produtoData.quantidade} x ${produtoData.nome}</span>
+					<small class="fw-bold">R$ ${produtoData.valor}</small>
+			 </div>
+		</li>
+	`
+}
+
 // Função usada na página do carrinho
 function createHTMLCartPag(produtoData) {
 	return `<tr data-produto='${JSON.stringify(produtoData)}' data-produto-id="${produtoData.id}" onclick="acaoCarrinhoProduto(event, this)">
@@ -453,7 +483,7 @@ function createHTMLCartPag(produtoData) {
 		</div>
 	</td>
 	<td class="valor-total" data-id="${produtoData.id}">R$ ${Number(produtoData.valor) * produtoData.quantidade}</td>
-	<td><a href="#" class="link-dark btn-remove"><i class="fas fa-times"></i></a></td>
+	<td><a href="#" class="link-dark btn-remove btn btn-close"></a></td>
 </tr>`
 }
 

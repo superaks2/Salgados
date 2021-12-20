@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="model.Usuarios" %>
 
 <jsp:include page="../estrutura/head.jsp">
 	<jsp:param name="css" value="/admin/assets/css/usuarios_gerenciar.css"/>
@@ -25,24 +26,21 @@
 								<div class="top-part mb-3">
 									<h2 class="d-inline">Gerenciar</h2>
 									<p class="d-inline ml-2">Usuários</p>
-									<a href="<%= request.getContextPath() %>/admin/index.jsp" class="d-inline text-dark mt-2" style="text-decoration: none; float: right; font-weight: 500;"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+									<a href="<%=request.getContextPath()%>/admin/index.jsp" class="d-inline text-dark mt-2" style="text-decoration: none; float: right; font-weight: 500;"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
 								</div>
 								<div class="row">
 
 									<!-- Add User Button -->
 
-									<div class="col-md-4">
-										<a href="<%= request.getContextPath() %>/admin/usuarios/adicionar.jsp" class="btn btn-primary ml-1">Adicionar Usuário</a>
+									<div class="col-md-4 my-2">
+										<a href="<%=request.getContextPath()%>/admin/usuarios/adicionar.jsp" class="btn btn-primary ml-1">Adicionar Usuário</a>
 									</div>
 
 									<!-- Search Bar -->
 
 									<div class="col-md-4 mt-2 mb-4 ml-auto">
 										<div class="input-group">
-						                	<input type="text" name="search" id="search" onkeyup="SearchField();" class="form-control shadow-none" placeholder="Procurar Usuários">
-						                	<span class="input-group-btn">
-						                		<button class="btn btn-primary shadow-none" id="search-button">Procurar</button>
-						                 	</span>
+						              
 						               	</div>
 									</div>
 
@@ -53,19 +51,16 @@
 									    	<tr>
 									      		<th scope="col">Id</th>
 									      		<th scope="col">Nome</th>
-									      		<th scope="col">Usuário</th>
 									      		<th scope="col">Email</th>
-									      		<th scope="col">Sexo</th>
-									      		<th scope="col">Grupo</th>
+									      		<th scope="col">Nivel de Acesso</th>
 									      		<th scope="col">Ação</th>
 									    	</tr>
 									  	</thead>
 									  	<tbody id="display">
-									  	<tr>
-									  		<td>
-									  			<h5 class='text-danger mb-3'>Nenhum dado para exibir.<h5>
-									  		</td>
-									  	</tr>
+									  	<%
+									  		String saida = new Usuarios().listAll();
+									  	%>
+ 										<%= saida %>
 									  	</tbody>
 									</table>
 
@@ -73,16 +68,7 @@
 
 									<nav aria-label="Page navigation example" style="background-color: transparent;">
 		                              <ul class="pagination justify-content-end">
-		                                     
-		                                  <li class="page-item"><a href="<?php  echo 'manage_user.php?page=' . $page_previous ?>" class="page-link">Voltar</a></li>               
-		                                    
-
-
-		                                <li class="page-item"><a href="manage_user.php?page=' . $page . '" class="page-link"> 1 </a></li>
-
-
-		                                  <li class="page-item "><a href="<?php  echo 'manage_user.php?page=' . $page_next ?>" class="page-link">Próximo</a></li>
-		                                      
+		                                           
 		                              </ul>
 		                          	</nav>
 									

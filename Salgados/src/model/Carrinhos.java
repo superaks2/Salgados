@@ -77,7 +77,7 @@ public class Carrinhos{
 	
 	public void delete() {
 		if(this.getId() > 0) {
-			this.dbQuery.delete(this.toArray());
+			this.dbQuery.deleteValues(this.toArray());
 		}
 	}
 	

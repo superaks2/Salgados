@@ -5,7 +5,7 @@
 <section class="secao banner" style="background-image: url('https://i.imgur.com/TYz70Uk.jpg'); background-size: cover; background-repeat: no-repeat;">
     <div class="container">
         <div class="col-12">
-            <h2 class="text-white text-center" data-aos="fade-up">Cardápio</h2>
+            <h2 class="text-white text-center titulo-tipo" data-aos="fade-up"><%= request.getParameter("tipo") != null ? request.getParameter("tipo") : "Cardápio" %></h2>
         </div>
     </div>
 </section>
@@ -17,6 +17,9 @@
           <h3 class="text-dark">Filtre aqui</h3>
           <hr>
           <ul class="filtro-lista" onclick="filtrar(event)">
+             <li>
+              <a href="#" class="text-decoration-none text-dark" data-tipo="">Todos</a>
+            </li>
             <li>
               <a href="#" class="text-decoration-none text-dark" data-tipo="Salgados">Salgados</a>
             </li>
@@ -38,12 +41,20 @@
       		if(tipo) {
       			console.log(tipo)
           		$('.cardapio-container').load('/Salgados/cardapio-detalhe/detalhe', {tipo: tipo})
+          		
+          		// Atualiza título da página
+          		$('.titulo-tipo').text(tipo)
+      		} else {
+      			$('.cardapio-container').load('/Salgados/cardapio-detalhe/detalhe')
+      			
+      			// Atualiza título da página
+          		$('.titulo-tipo').text("Cardápio")
       		}
       		
       	}
 
       </script>
-      	
+
       </script>
       <div class="col-9 cardapio-lista">
         <div class="row cardapio-container">
@@ -58,12 +69,16 @@
 
 </section>
 
+<% if(request.getParameter("tipo") != null) {  %>
 <script>
-	
+	$('.cardapio-container').load('/Salgados/cardapio-detalhe/detalhe', {tipo: `<%=request.getParameter("tipo")%>`})
+</script>
+<% } else { %>
+<script>
 	// CARREGA O HTML DOS PRODUTOS
 	$('.cardapio-container').load('/Salgados/cardapio-detalhe/detalhe')
-	// END CARREGA O HTML DOS PRODUTOS
-		
-		   		
+	// END CARREGA O HTML DOS PRODUTOS		
 </script>
+<% } %>
+
 <%@include file="estrutura/footer.jsp" %>

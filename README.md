@@ -14,6 +14,8 @@ https://youtu.be/OXrVG2jGugY
 
 https://youtu.be/ijFXNUvr6fE
 
+https://youtu.be/N6bXKJEOOjE
+
 
 
 ****
@@ -91,7 +93,7 @@ Na página carrinho, com auxílio de cookie, o cliente adiciona produtos no carr
 
   * Validação do Session na view
 
-    ![](https://i.imgur.com/lvmYyD6.jpg)
+  ![](https://i.imgur.com/lvmYyD6.jpg)
 
 
 
